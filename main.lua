@@ -1,6 +1,7 @@
 require('love')
 
 function love.load()
+    love.graphics.setNewFont(30)
 end
 
 function love.update(dt)
@@ -19,6 +20,13 @@ function love.draw()
                 (y - 1) * pieceSize,
                 pieceDrawSize,
                 pieceDrawSize
+            )
+
+            love.graphics.setColor(1, 1, 1)
+            love.graphics.print(
+                ((y - 1) * 4) + x,
+                (x - 1) * pieceSize,
+                (y - 1) * pieceSize
             )
         end
     end
