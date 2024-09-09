@@ -45,3 +45,35 @@ function love.draw()
         end
     end
 end
+
+function love.keypressed(key)
+    local emptyX, emptyY
+
+    for y = 1, gridYCount do
+        for x = 1, gridXCount do
+            if grid[y][x] == gridXCount * gridYCount then
+                emptyX = x
+                emptyY = y
+            end
+        end
+    end
+
+    local newEmptyY = emptyY
+    local newEmptyX = emptyX
+
+    if key == 'down' then
+        newEmptyY = emptyY - 1
+    elseif key == 'up' then
+        newEmptyY = emptyY + 1
+    elseif key == 'right' then
+        newEmptyX = emptyX - 1
+    elseif key == 'left' then
+        newEmptyX = emptyX + 1
+    end
+
+    if grid[newEmptyY] and grid[newEmptyY][newEmptyX] then
+        -- swap pieces
+        grid[newEmptyY][newEmptyX], grid[emptyY][emptyX] = grid[emptyY][emptyX], grid[newEmptyY][newEmptyX]
+    end
+
+end
